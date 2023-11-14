@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <p>Rock-Paper-Scissors</p>
+    </head>
+        <body>
+            
+            <button onclick =" 
+             winner('rock',0) ">Rock</button>
+
+            <button onclick =" 
+            winner('paper',0.5) ">Paper</button>
+
+
+            <button onclick =" 
+            winner('scissors',0.99) ">Scissors</button>
+
+            <script>
+                // Wrte a function that generate a computer input when given a user input, then output a string that shows who is winner
+                function winner(userInput, userInputNumber)
+                {
+                    let randomNumber = Math.random();
+                    let aiInput = "";
+                    if(randomNumber >= 0 && randomNumber < 1/3)
+                    {
+                        aiInput = "Rock";
+                    }
+                    else if(randomNumber >= 1/3 && randomNumber < 2/3)
+                    {
+                        aiInput = "Paper";
+                    }
+                    else if (randomNumber >= 2/3 && randomNumber < 1)
+                    {
+                        aiInput = "Scissors";
+                    }
+
+                    //if AI pick anything that will win
+                    if ((randomNumber - userInputNumber) >= 1/3 && (randomNumber - userInputNumber) < 2/3 || aiInput === "Rock" && userInput === "Scissors")
+                    {
+                        console.log("AIinput: " + aiInput, "AInumber: " + randomNumber);
+                        alert("The AI choose " + aiInput + ", you pick " + userInput + ", you lose");
+                    }
+                    //if AI pick anything that will lose
+                    else if ((userInputNumber - randomNumber) >= 1/3 && (userInputNumber - randomNumber) < 2/3 || userInput === "Rock" && aiInput === "Scissors")
+                    {
+                        console.log("AIinput: " + aiInput, "AInumber: " + randomNumber);
+                        alert("The AI choose " + aiInput + ", you pick " + userInput + ", you win");
+                    }
+                    else if (userInput === aiInput)
+                    {
+                        console.log("AIinput: " + aiInput, "AInumber: " + randomNumber);
+                        alert("The AI choose " + aiInput + ", you pick " + userInput + ", it is a draw");
+                    }
+
+                }
+            </script>
+        </body>
+    
+</html>
