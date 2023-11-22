@@ -19,14 +19,23 @@
              score.wins = 0;
              score.loss = 0;
              score.ties = 0;
+             localStorage.removeItem('score');
              ">Reset Scores</button>
 
             <script>
-                const score = {
-                    wins: 0, 
-                    losses: 0,
-                    ties: 0
-                };
+
+                let score = JSON.parse(localStorage.getItem('score'));
+
+                if (!score)
+                {
+                    score = {
+                        wins: 0,
+                        losses: 0,
+                        ties: 0
+                    };
+                    
+                }
+                
                 // Wrte a function that generate a computer input when given a user input, then output a string that shows who is winner
                 function playGame(userInput, userInputNumber)
                 {
@@ -71,6 +80,8 @@
                         alert(`The AI choose ${aiInput} , you pick ${userInput} , it is a draw
                         Wins: ${score.wins}, losses: ${score.losses}, ties: ${score.ties}`);
                     }
+
+                    localStorage.setItem('score', JSON.stringify(score));
 
                 }
             </script>
