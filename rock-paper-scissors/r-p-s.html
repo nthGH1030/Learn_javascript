@@ -23,18 +23,13 @@
              ">Reset Scores</button>
 
             <script>
-
-                let score = JSON.parse(localStorage.getItem('score'));
-
-                if (!score)
+                // if score is not null, get it from local store; if it is false / null, set a default value
+                let score = JSON.parse(localStorage.getItem('score')) || 
                 {
-                    score = {
-                        wins: 0,
-                        losses: 0,
-                        ties: 0
-                    };
-                    
-                }
+                    wins: 0,
+                    losses: 0,
+                    ties: 0
+                };
                 
                 // Wrte a function that generate a computer input when given a user input, then output a string that shows who is winner
                 function playGame(userInput, userInputNumber)
