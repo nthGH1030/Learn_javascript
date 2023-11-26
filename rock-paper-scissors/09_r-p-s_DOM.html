@@ -38,7 +38,6 @@
 
                 updateScoreElement();
 
-
                 function updateScoreElement()
                 {
                     document.querySelector(".js-score").innerHTML = 
@@ -63,8 +62,6 @@
                     {
                         aiInput = "Scissors";
                     }
-
-                   
 
                     //if AI pick anything that will win
                     if ((randomNumber - userInputNumber) >= 1/3 && (randomNumber - userInputNumber) < 2/3 || aiInput === "Rock" && userInput === "Scissors")
