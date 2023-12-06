@@ -34,6 +34,7 @@ function randomArray()
 
     for(let i = 0; i < arrayLength; i++)
     {
+        //math.floor() round down the number to whole number, so a + 1 is needed
         let randomNumber = Math.floor((Math.random() * 100) + 1);
         array.push(randomNumber);
     }
