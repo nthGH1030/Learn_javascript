@@ -43,7 +43,7 @@ function autoPlay()
 {   
     if(!isAutoPlaying)
     {
-        intervalID = setInterval(function(){
+        intervalID = setInterval(() => {
             const playerMove = pickComputerMove();
             playGame(playerMove);
             isAutoPlaying = true;
@@ -53,9 +53,37 @@ function autoPlay()
         clearInterval(intervalID);
         isAutoPlaying = false;
     }
-
-
 }
+
+document.querySelector('.js-rock-button')
+.addEventListener('click', () => {
+    playGame(`Rock`);
+})
+
+document.querySelector('.js-scissors-button')
+.addEventListener('click', () => {
+    playGame(`Scissors`);
+})
+
+document.querySelector('.js-paper-button')
+.addEventListener('click', () => {
+    playGame(`Paper`);
+})
+
+document.body.addEventListener('keydown', (event) => {
+    if (event.key === `r`)
+    {
+        playGame(`Rock`);
+    }
+    else if (event.key === `p`)
+    {
+        playGame(`Paper`);
+    }
+    else if (event.key === `s`)
+    {
+        playGame(`Scissors`);
+    }
+});
 
 // Wrte a function that generate a computer input when given a user input, then output a string that shows who is winner
 function playGame(userInput)
