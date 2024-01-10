@@ -7,109 +7,97 @@ let cartSummaryHTML = '';
 
 cart.forEach((cartItem) => {
     const productId = cartItem.productId;
-    
+  
     let matchingProduct;
-    
+  
     products.forEach((product) => {
-        if (product.id === productId)
-        {
-            matchingProduct = product;
-        }
-        
-    });  
-
+      if (product.id === productId) {
+        matchingProduct = product;
+      }
+    });
+  
     cartSummaryHTML += `
-    <div class="cart-item-container 
-    js-cart-item-container-${matchingProduct.id}">
+      <div class="cart-item-container
+        js-cart-item-container-${matchingProduct.id}">
         <div class="delivery-date">
-        Delivery date: Tuesday, June 21
+          Delivery date: Tuesday, June 21
         </div>
-
+  
         <div class="cart-item-details-grid">
-        <img class="product-image"
-            src=${matchingProduct.image}>
-
-        <div class="cart-item-details">
+          <img class="product-image"
+            src="${matchingProduct.image}">
+  
+          <div class="cart-item-details">
             <div class="product-name">
-            ${matchingProduct.name}
+              ${matchingProduct.name}
             </div>
             <div class="product-price">
-            ${formatCurrency(matchingProduct.priceCents)}
+              $${formatCurrency(matchingProduct.priceCents)}
             </div>
             <div class="product-quantity">
-            <span>
+              <span>
                 Quantity: <span class="quantity-label">${cartItem.quantity}</span>
-            </span>
-            <span class="update-quantity-link link-primary">
+              </span>
+              <span class="update-quantity-link link-primary js-update-link"
+                data-product-id="${matchingProduct.id}">
                 Update
-            </span>
-            <span class="delete-quantity-link link-primary 
-            js-delete-link" data-product-id="${matchingProduct.id}">
+              </span>
+              <span class="delete-quantity-link link-primary js-delete-link" data-product-id="${matchingProduct.id}">
                 Delete
-            </span>
+              </span>
             </div>
-        </div>
-
-        <div class="delivery-options">
+          </div>
+  
+          <div class="delivery-options">
             <div class="delivery-options-title">
-            Choose a delivery option:
+              Choose a delivery option:
             </div>
             <div class="delivery-option">
-            <input type="radio" checked
+              <input type="radio" checked
                 class="delivery-option-input"
                 name="delivery-option-${matchingProduct.id}">
-            <div>
+              <div>
                 <div class="delivery-option-date">
-                Tuesday, June 21
+                  Tuesday, June 21
                 </div>
                 <div class="delivery-option-price">
-                FREE Shipping
+                  FREE Shipping
                 </div>
-            </div>
+              </div>
             </div>
             <div class="delivery-option">
-            <input type="radio"
+              <input type="radio"
                 class="delivery-option-input"
                 name="delivery-option-${matchingProduct.id}">
-            <div>
+              <div>
                 <div class="delivery-option-date">
-                Wednesday, June 15
+                  Wednesday, June 15
                 </div>
                 <div class="delivery-option-price">
-                $4.99 - Shipping
+                  $4.99 - Shipping
                 </div>
-            </div>
+              </div>
             </div>
             <div class="delivery-option">
-            <input type="radio"
+              <input type="radio"
                 class="delivery-option-input"
                 name="delivery-option-${matchingProduct.id}">
-            <div>
+              <div>
                 <div class="delivery-option-date">
-                Monday, June 13
+                  Monday, June 13
                 </div>
                 <div class="delivery-option-price">
-                $9.99 - Shipping
+                  $9.99 - Shipping
                 </div>
+              </div>
             </div>
-            </div>
+          </div>
         </div>
-        </div>
-    </div>
+      </div>
     `;
-});
+  });
 
-function updateCartQuantity(){
 
-    let cartQuantity = calculateCartQuantity();
-
-    document.querySelector('.js-cart-quantity')
-    .innerHTML = `Checkout(${cartQuantity} items)`;
-
-}
-
-updateCartQuantity();
- 
 document.querySelector('.js-order-summary')
 .innerHTML = cartSummaryHTML;
 
@@ -127,7 +115,31 @@ document.querySelectorAll('.js-delete-link')
         container.remove();
         updateCartQuantity();
  
-        
     })
 })
+
+
+function updateCartQuantity(){
+
+    let cartQuantity = calculateCartQuantity();
+
+    document.querySelector('.js-cart-quantity')
+    .innerHTML = `Checkout(${cartQuantity} items)`;
+
+}
+
+updateCartQuantity();
+
+document.querySelectorAll('.js-update-link')
+  .forEach((link) => {
+    link.addEventListener('click', () => {
+      const productId = link.dataset.productId;
+      console.log("hello");
+      console.log(productId);
+    });
+  });
+
+ 
+
+
 
