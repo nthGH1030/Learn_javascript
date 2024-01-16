@@ -41,9 +41,11 @@ cart.forEach((cartItem) => {
               <span class="update-quantity-link link-primary js-update-link"
                 data-product-id="${matchingProduct.id}">
                 Update
-                <input class = "quantity-input">
               </span>
-              <span class ="save-quantity-link link-primary">Save
+              <input class = "quantity-input">
+              <span class ="save-quantity-link link-primary"
+              data-product-id="${matchingProduct.id}">
+              Save
               </span>
               <span class="delete-quantity-link link-primary js-delete-link" data-product-id="${matchingProduct.id}">
                 Delete
@@ -137,17 +139,31 @@ document.querySelectorAll('.js-update-link')
   .forEach((link) => {
     link.addEventListener('click', () => {
       const productId = link.dataset.productId;
-      console.log(productId);
-        
+      
       //Get the quantity container and add a class
       const container = document.querySelector(
         `.js-cart-item-container-${productId}`
         );
+        //the class make the element status change from none -> initial
       container.classList.add('is-editing-quantity');
-
 
     });
   });
+
+  document.querySelectorAll('.save-quantity-link')
+    .forEach((link) => {
+        link.addEventListener('click', () => {
+            const productId = link.dataset.productId;
+
+            //Get the container and remove a class
+            const container = document.querySelector(
+            `.js-cart-item-container-${productId}`
+            );
+            //change the class from initial -> none by removing it
+            container.classList.remove('is-editing-quantity');
+            
+        });
+    });
 
 
 
