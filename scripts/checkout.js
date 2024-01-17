@@ -1,4 +1,4 @@
-import {cart, removeFromCart, calculateCartQuantity} from '../data/cart.js';
+import {cart, removeFromCart, calculateCartQuantity, UpdateQuantity} from '../data/cart.js';
 import {products} from '../data/products.js';
 import {formatCurrency} from './utils/money.js';
 
@@ -42,7 +42,7 @@ cart.forEach((cartItem) => {
                 data-product-id="${matchingProduct.id}">
                 Update
               </span>
-              <input class = "quantity-input">
+              <input class = "quantity-input js-quantity-input-${matchingProduct.id}">
               <span class ="save-quantity-link link-primary"
               data-product-id="${matchingProduct.id}">
               Save
@@ -159,8 +159,20 @@ document.querySelectorAll('.js-update-link')
             const container = document.querySelector(
             `.js-cart-item-container-${productId}`
             );
+            
             //change the class from initial -> none by removing it
             container.classList.remove('is-editing-quantity');
+
+            //Get the quantity in the input field
+            const quantityInput = document.querySelector(
+                `.js-quantity-input-${productId}`
+                );
+
+            const newQuantity = Number(quantityInput.value);
+            
+            UpdateQuantity(productId, newQuantity);
+            
+            console.log(cart);
             
         });
     });
