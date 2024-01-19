@@ -167,16 +167,22 @@ document.querySelectorAll('.js-update-link')
             const quantityInput = document.querySelector(
                 `.js-quantity-input-${productId}`
                 );
+            
+            
 
             const newQuantity = Number(quantityInput.value);
-            
-            UpdateQuantity(productId, newQuantity);
-            
-            console.log(cart);
+            if (newQuantity > 0)
+            {
+                UpdateQuantity(productId, newQuantity);
 
-            document.querySelector(
+                document.querySelector(
                 `.js-quantity-label-${productId}`).innerHTML = newQuantity;
-            
+            }
+            else
+            {
+                alert('The number is invalid');
+            }
+  
         });
     });
 
