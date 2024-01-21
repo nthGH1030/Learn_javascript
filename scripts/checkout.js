@@ -150,9 +150,11 @@ document.querySelectorAll('.js-update-link')
     });
   });
 
+  
   document.querySelectorAll('.save-quantity-link')
     .forEach((link) => {
         link.addEventListener('click', () => {
+
             const productId = link.dataset.productId;
 
             //Get the container and remove a class
@@ -168,8 +170,6 @@ document.querySelectorAll('.js-update-link')
                 `.js-quantity-input-${productId}`
                 );
             
-            
-
             const newQuantity = Number(quantityInput.value);
             if (newQuantity > 0)
             {
@@ -184,8 +184,41 @@ document.querySelectorAll('.js-update-link')
             }
   
         });
-    });
+        const productId = link.dataset.productId;
 
+        //Get the container and remove a class
+        const container = document.querySelector(
+        `.js-cart-item-container-${productId}`
+        );
+
+        const quantityInput = document.querySelector(
+            `.js-quantity-input-${productId}`
+            );
+        quantityInput.addEventListener('keypress', (event) => {
+
+            if (event.key === 'Enter')
+            {
+                //change the class from initial -> none by removing it
+                container.classList.remove('is-editing-quantity');
+
+                const newQuantity = Number(quantityInput.value);
+                if (newQuantity > 0)
+                {
+                    UpdateQuantity(productId, newQuantity);
+    
+                    document.querySelector(
+                    `.js-quantity-label-${productId}`).innerHTML = newQuantity;
+                }
+                else
+                {
+                    alert('The number is invalid');
+                }
+                
+            }
+        })
+    });
+    
+    
     updateCartQuantity();
 
 
