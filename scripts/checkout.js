@@ -5,7 +5,7 @@ import {hello} from 'https://unpkg.com/supersimpledev@1.0.1/hello.esm.js';
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 import {deliveryOptions} from '../data/deliveryOptions.js';
 
-let cartSummaryHTML = '';
+
 
 //handle date
 //const today = dayjs();
@@ -17,7 +17,10 @@ let cartSummaryHTML = '';
 
 //hello();
 
-cart.forEach((cartItem) => {
+function renderOrderSummary(){
+
+  let cartSummaryHTML = '';
+  cart.forEach((cartItem) => {
     const productId = cartItem.productId;
   
     let matchingProduct;
@@ -258,10 +261,16 @@ document.querySelectorAll('.js-update-link')
         element.addEventListener('click', () => {
           const {productId, deliveryOptionId} = element.dataset;
           updateDeliveryOption(productId, deliveryOptionId);
+          renderOrderSummary();
          
         });
       });
   
+}
+
+renderOrderSummary();
+
+
 
 
 
