@@ -22,6 +22,14 @@ export function exercise()
 
     //exercise 15d
     const dayOfWeekDateString = today.format('dddd');
-    console.log(dayOfWeekDateString);
+    console.log(`Exercise 15d : ${dayOfWeekDateString}`);
 
+    //exercise 15e
+    function exerciseFifthteenE(dayjsObject)
+    {
+        const dayOfWeekDateString = dayjsObject.format('dddd');
+        return dayOfWeekDateString
+    }
+
+    console.log(`Exercise 15e : ${exerciseFifthteenE(today)}`);
 }
