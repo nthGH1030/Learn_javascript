@@ -1,4 +1,5 @@
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
+import {isWeekendExerciseF} from './exercise15f.js';
 
 export function exercise()
 {
@@ -38,5 +39,6 @@ export function exercise()
     console.log(`Exercise 15e : ${isWeekend(today)}`);
 
     //exercise 15f
+    console.log(`Exercise 15f : ${isWeekendExerciseF(today)}`);
 
 }
