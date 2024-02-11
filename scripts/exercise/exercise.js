@@ -25,11 +25,18 @@ export function exercise()
     console.log(`Exercise 15d : ${dayOfWeekDateString}`);
 
     //exercise 15e
-    function exerciseFifthteenE(dayjsObject)
+    function isWeekend(dayjsObject)
     {
         const dayOfWeekDateString = dayjsObject.format('dddd');
-        return dayOfWeekDateString
+        if (dayOfWeekDateString === 'Sunday' || 'Saturaday')
+        {
+            return dayOfWeekDateString
+        }
+        
     }
 
-    console.log(`Exercise 15e : ${exerciseFifthteenE(today)}`);
+    console.log(`Exercise 15e : ${isWeekend(today)}`);
+
+    //exercise 15f
+
 }
