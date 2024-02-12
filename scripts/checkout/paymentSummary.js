@@ -2,6 +2,7 @@ import { cart} from "../../data/cart.js";
 import { getDeliveryOption } from "../../data/deliveryOptions.js";
 import {getProduct} from '../../data/products.js';
 import {formatCurrency} from '../utils/money.js';
+import { renderCheckoutHeader } from "./checkoutHeader.js";
 
 
 export function renderPaymentSummary(){
@@ -19,6 +20,8 @@ export function renderPaymentSummary(){
         const deliveryOption = getDeliveryOption(cartItem.deliveryOptionId);
         shippingPriceCents += deliveryOption.priceCents;
         
+        return cartTotalQuantity;
+        
     });
         
     const totalBeforeTaxCents = productPriceCents + shippingPriceCents;
@@ -26,7 +29,9 @@ export function renderPaymentSummary(){
     const totalCents = totalBeforeTaxCents +  taxCents;
 
     const paymentSummaryHTML = 
-    ` <div class="payment-summary-title">
+    ` 
+        ${renderCheckoutHeader(cartTotalQuantity)}
+        <div class="payment-summary-title">
             Order Summary
         </div>
 
@@ -73,3 +78,4 @@ export function renderPaymentSummary(){
   document.querySelector('.js-payment-summary')
   .innerHTML = paymentSummaryHTML;
 }
+
