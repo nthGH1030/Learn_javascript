@@ -16,11 +16,8 @@ export function renderPaymentSummary(){
         product.priceCents * cartItem.quantity;
         cartTotalQuantity += cartItem.quantity;
         
-
         const deliveryOption = getDeliveryOption(cartItem.deliveryOptionId);
         shippingPriceCents += deliveryOption.priceCents;
-        
-        return cartTotalQuantity;
         
     });
         
@@ -30,7 +27,6 @@ export function renderPaymentSummary(){
 
     const paymentSummaryHTML = 
     ` 
-        ${renderCheckoutHeader(cartTotalQuantity)}
         <div class="payment-summary-title">
             Order Summary
         </div>
