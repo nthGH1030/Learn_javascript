@@ -7,6 +7,6 @@ renderCheckoutHeader();
 renderOrderSummary();
 renderPaymentSummary();
 
-exercise();
+//exercise();
 
 
